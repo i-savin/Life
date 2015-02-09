@@ -24,80 +24,16 @@ public class Colony {
 
     public List<Cell> getNeighbours(int i, int j) {
         List<Cell> neighbours = new ArrayList<Cell>();
-        boolean left = true,
-                right = true,
-                top = true,
-                bottom = true;
-        if (i > 0) {
-            top = false;
-        }
-        if (i < cells.length - 1) {
-            bottom = false;
-        }
-        if (j > 0) {
-            left = false;
-        }
-        if (j < cells[i].length - 1) {
-            right = false;
-        }
-
-        if (left) {
-            if (top) {
-                neighbours.add(cells[i + 1][j]);
-                neighbours.add(cells[i + 1][j + 1]);
-                neighbours.add(cells[i][j + 1]);
-            } else if (bottom) {
-                neighbours.add(cells[i - 1][j]);
-                neighbours.add(cells[i - 1][j + 1]);
-                neighbours.add(cells[i][j + 1]);
-            } else {
-                neighbours.add(cells[i - 1][j]);
-                neighbours.add(cells[i - 1][j + 1]);
-                neighbours.add(cells[i][j + 1]);
-                neighbours.add(cells[i + 1][j + 1]);
-                neighbours.add(cells[i + 1][j]);
-            }
-        } else if (right) {
-            if (top) {
-                neighbours.add(cells[i][j - 1]);
-                neighbours.add(cells[i + 1][j - 1]);
-                neighbours.add(cells[i + 1][j]);
-            } else if (bottom) {
-                neighbours.add(cells[i][j - 1]);
-                neighbours.add(cells[i - 1][j - 1]);
-                neighbours.add(cells[i][j - 1]);
-            } else {
-                neighbours.add(cells[i + 1][j]);
-                neighbours.add(cells[i + 1][j - 1]);
-                neighbours.add(cells[i][j - 1]);
-                neighbours.add(cells[i - 1][j - 1]);
-                neighbours.add(cells[i - 1][j]);
-            }
-        } else {
-            if (top) {
-                neighbours.add(cells[i][j - 1]);
-                neighbours.add(cells[i][j + 1]);
-                neighbours.add(cells[i + 1][j + 1]);
-                neighbours.add(cells[i + 1][j]);
-                neighbours.add(cells[i + 1][j - 1]);
-            } else if (bottom) {
-                neighbours.add(cells[i][j - 1]);
-                neighbours.add(cells[i - 1][j - 1]);
-                neighbours.add(cells[i - 1][j]);
-                neighbours.add(cells[i - 1][j + 1]);
-                neighbours.add(cells[i][j + 1]);
-            } else {
-                neighbours.add(cells[i - 1][j - 1]);
-                neighbours.add(cells[i - 1][j]);
-                neighbours.add(cells[i - 1][j + 1]);
-                neighbours.add(cells[i][j + 1]);
-                neighbours.add(cells[i + 1][j + 1]);
-                neighbours.add(cells[i + 1][j]);
-                neighbours.add(cells[i + 1][j - 1]);
-                neighbours.add(cells[i][j - 1]);
-            }
-        }
-
+        int minusLine = i - 1;
+        int minusRow = j - 1;
+        neighbours.add(cells[i][(j + 1) % cells[i].length]);
+        neighbours.add(cells[(i + 1) % cells.length][(j + 1) % cells[i].length]);
+        neighbours.add(cells[(i + 1) % cells.length][j]);
+        neighbours.add(cells[(i + 1) % cells.length][minusRow < 0 ? cells[i].length - 1 : minusRow]);
+        neighbours.add(cells[i][minusRow < 0 ? cells[i].length - 1 : minusRow]);
+        neighbours.add(cells[minusLine < 0 ? cells.length - 1 : minusLine][minusRow < 0 ? cells[i].length - 1 : minusRow]);
+        neighbours.add(cells[minusLine < 0 ? cells.length - 1 : minusLine][j]);
+        neighbours.add(cells[minusLine < 0 ? cells.length - 1 : minusLine][(j + 1) % cells[i].length]);
         return neighbours;
     }
 
@@ -116,12 +52,16 @@ public class Colony {
         Cell[][] newCells = copyColony();
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
+                int liveNeighboursCount = getLiveNeighboursCount(i, j);
+
                 if (cells[i][j].isAlive()) {
-                    if (getLiveNeighboursCount(i, j) > 3 || getLiveNeighboursCount(i, j) < 2) {
+                    if (liveNeighboursCount > 3) {
+                        newCells[i][j].die();
+                    } else if (liveNeighboursCount < 2) {
                         newCells[i][j].die();
                     }
                 } else {
-                    if (getLiveNeighboursCount(i, j) == 3) {
+                    if (liveNeighboursCount == 3) {
                         newCells[i][j].born();
                     }
                 }

@@ -12,7 +12,7 @@ public class World {
     private Colony colony;
 
     public void createColony(int colonyHeight, int colonyLength) {
-        this.colony = new Colony(colonyLength, colonyHeight);
+        this.colony = new Colony(colonyHeight, colonyLength);
     }
 
     public void createColony() {
