@@ -1,4 +1,4 @@
-package ru.isavin.life.txt.ru.isavin.life.model;
+package ru.isavin.life.model;
 
 import java.util.ArrayList;
 import java.util.List;
