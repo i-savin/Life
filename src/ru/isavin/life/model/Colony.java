@@ -53,17 +53,11 @@ public class Colony {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 int liveNeighboursCount = getLiveNeighboursCount(i, j);
-
-                if (cells[i][j].isAlive()) {
-                    if (liveNeighboursCount > 3) {
-                        newCells[i][j].die();
-                    } else if (liveNeighboursCount < 2) {
-                        newCells[i][j].die();
-                    }
-                } else {
-                    if (liveNeighboursCount == 3) {
-                        newCells[i][j].born();
-                    }
+                int liveCells = cells[i][j].isAlive() ? liveNeighboursCount + 1 : liveNeighboursCount;
+                if (liveCells == 3) {
+                    newCells[i][j].born();
+                } else if (liveCells != 4) {
+                    newCells[i][j].die();
                 }
             }
         }
