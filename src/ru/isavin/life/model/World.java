@@ -13,10 +13,16 @@ public class World {
 
     public void createColony(int colonyHeight, int colonyLength) {
         this.colony = new Colony(colonyHeight, colonyLength);
+        Cell[][] colonyCells = this.colony.getCells();
+        for (int i = 0; i < colonyCells.length; i++) {
+            for (int j = 0; j < colonyCells[i].length; j++) {
+                colonyCells[i][j] = new Cell(false);
+            }
+        }
     }
 
     public void createColony() {
-        this.colony = new Colony(DEFAULT_WORLD_SIZE, DEFAULT_WORLD_SIZE);
+        createColony(DEFAULT_WORLD_SIZE, DEFAULT_WORLD_SIZE);
     }
 
     public void populateColony() {
@@ -31,11 +37,6 @@ public class World {
 
     public void createGlider() {
         Cell[][] colonyCells = this.colony.getCells();
-        for (int i = 0; i < colonyCells.length; i++) {
-            for (int j = 0; j < colonyCells[i].length; j++) {
-                colonyCells[i][j] = new Cell(false);
-            }
-        }
         colonyCells[0][1].born();
         colonyCells[1][2].born();
         colonyCells[2][2].born();
@@ -45,11 +46,6 @@ public class World {
 
     public void createGliderGun() {
         Cell[][] colonyCells = this.colony.getCells();
-        for (int i = 0; i < colonyCells.length; i++) {
-            for (int j = 0; j < colonyCells[i].length; j++) {
-                colonyCells[i][j] = new Cell(false);
-            }
-        }
         colonyCells[5][1].born();
         colonyCells[5][2].born();
         colonyCells[6][1].born();
@@ -102,11 +98,6 @@ public class World {
 
     public void createDiehard() {
         Cell[][] colonyCells = this.colony.getCells();
-        for (int i = 0; i < colonyCells.length; i++) {
-            for (int j = 0; j < colonyCells[i].length; j++) {
-                colonyCells[i][j] = new Cell(false);
-            }
-        }
 
         int startRow = this.colony.getCells().length / 2;
         int startColumn = this.colony.getCells()[0].length / 4;
@@ -119,6 +110,66 @@ public class World {
         colonyCells[startRow + 1][startColumn + 6].born();
         colonyCells[startRow - 1][startColumn + 6].born();
         colonyCells[startRow + 1][startColumn + 7].born();
+
+    }
+
+    public void createAcorn() {
+        Cell[][] colonyCells = this.colony.getCells();
+
+        int startRow = this.colony.getCells().length / 2;
+        int startColumn = this.colony.getCells()[0].length / 4;
+
+        colonyCells[startRow][startColumn + 1].born();
+        colonyCells[startRow][startColumn + 2].born();
+        colonyCells[startRow - 2][startColumn + 2].born();
+
+        colonyCells[startRow - 1][startColumn + 4].born();
+
+        colonyCells[startRow][startColumn + 5].born();
+        colonyCells[startRow][startColumn + 6].born();
+        colonyCells[startRow][startColumn + 7].born();
+
+    }
+
+    public void createLineColony() {
+        Cell[][] colonyCells = this.colony.getCells();
+
+        int startRow = this.colony.getCells().length / 2;
+        int startColumn = this.colony.getCells()[0].length / 4;
+
+        colonyCells[startRow][startColumn + 2].born();
+        colonyCells[startRow][startColumn + 3].born();
+        colonyCells[startRow][startColumn + 4].born();
+        colonyCells[startRow][startColumn + 5].born();
+        colonyCells[startRow][startColumn + 6].born();
+        colonyCells[startRow][startColumn + 7].born();
+        colonyCells[startRow][startColumn + 8].born();
+        colonyCells[startRow][startColumn + 9].born();
+
+        colonyCells[startRow][startColumn + 11].born();
+        colonyCells[startRow][startColumn + 12].born();
+        colonyCells[startRow][startColumn + 13].born();
+        colonyCells[startRow][startColumn + 14].born();
+        colonyCells[startRow][startColumn + 15].born();
+
+        colonyCells[startRow][startColumn + 18].born();
+        colonyCells[startRow][startColumn + 19].born();
+        colonyCells[startRow][startColumn + 20].born();
+
+        colonyCells[startRow][startColumn + 26].born();
+        colonyCells[startRow][startColumn + 27].born();
+        colonyCells[startRow][startColumn + 28].born();
+        colonyCells[startRow][startColumn + 29].born();
+        colonyCells[startRow][startColumn + 30].born();
+        colonyCells[startRow][startColumn + 31].born();
+        colonyCells[startRow][startColumn + 32].born();
+
+        colonyCells[startRow][startColumn + 34].born();
+        colonyCells[startRow][startColumn + 35].born();
+        colonyCells[startRow][startColumn + 36].born();
+        colonyCells[startRow][startColumn + 37].born();
+        colonyCells[startRow][startColumn + 38].born();
+
 
     }
 
