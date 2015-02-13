@@ -7,8 +7,13 @@ import java.util.List;
  * @author ilasavin
  * @since 06.02.15.
  */
+
+//TODO научиться определять минимальную цикличность
+//TODO научиться определять цикличность поколений - хэш-код?
+
 public class Colony {
     private Cell[][] cells;
+    private boolean colonyDead = true;
 
     public Colony(int length, int height) {
         cells = new Cell[length][height];
@@ -50,6 +55,7 @@ public class Colony {
 
     public void update() {
         Cell[][] newCells = copyColony();
+        boolean allCellsAreDead = true;
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 int liveNeighboursCount = getLiveNeighboursCount(i, j);
@@ -59,9 +65,14 @@ public class Colony {
                 } else if (liveCells != 4) {
                     newCells[i][j].die();
                 }
+                if (newCells[i][j].isAlive()) {
+                    allCellsAreDead = false;
+                }
+
             }
         }
         cells = newCells;
+        colonyDead = allCellsAreDead;
     }
 
     private Cell[][] copyColony() {
@@ -72,5 +83,13 @@ public class Colony {
             }
         }
         return newColony;
+    }
+
+    public boolean isColonyDead() {
+        return colonyDead;
+    }
+
+    public void setColonyDead(boolean colonyDead) {
+        this.colonyDead = colonyDead;
     }
 }

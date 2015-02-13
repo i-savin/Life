@@ -31,6 +31,9 @@ public class World {
         for (int i = 0; i < colonyCells.length; i++) {
             for (int j = 0; j < colonyCells[i].length; j++) {
                 colonyCells[i][j] = new Cell(random.nextBoolean());
+                if (this.colony.isColonyDead() && colonyCells[i][j].isAlive()) {
+                    this.colony.setColonyDead(false);
+                }
             }
         }
     }
@@ -42,6 +45,7 @@ public class World {
         colonyCells[2][2].born();
         colonyCells[2][1].born();
         colonyCells[2][0].born();
+        this.colony.setColonyDead(false);
     }
 
     public void createGliderGun() {
@@ -94,6 +98,7 @@ public class World {
         colonyCells[5][35].born();
         colonyCells[4][36].born();
         colonyCells[5][36].born();
+        this.colony.setColonyDead(false);
     }
 
     public void createDiehard() {
@@ -110,7 +115,7 @@ public class World {
         colonyCells[startRow + 1][startColumn + 6].born();
         colonyCells[startRow - 1][startColumn + 6].born();
         colonyCells[startRow + 1][startColumn + 7].born();
-
+        this.colony.setColonyDead(false);
     }
 
     public void createAcorn() {
@@ -128,7 +133,7 @@ public class World {
         colonyCells[startRow][startColumn + 5].born();
         colonyCells[startRow][startColumn + 6].born();
         colonyCells[startRow][startColumn + 7].born();
-
+        this.colony.setColonyDead(false);
     }
 
     public void createLineColony() {
@@ -169,8 +174,7 @@ public class World {
         colonyCells[startRow][startColumn + 36].born();
         colonyCells[startRow][startColumn + 37].born();
         colonyCells[startRow][startColumn + 38].born();
-
-
+        this.colony.setColonyDead(false);
     }
 
     public void printColony() {
@@ -184,6 +188,10 @@ public class World {
 
     public void changeGeneration() {
         colony.update();
+    }
+
+    public boolean colonyIsAlive() {
+        return !this.colony.isColonyDead();
     }
 
     public Colony getColony() {
