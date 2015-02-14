@@ -92,4 +92,14 @@ public class Colony {
     public void setColonyDead(boolean colonyDead) {
         this.colonyDead = colonyDead;
     }
+
+    public int getHash() {
+        int hash = 0;
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                hash ^= i * j * (cells[i][j].isAlive() ? 13 : 7);
+            }
+        }
+        return hash;
+    }
 }
