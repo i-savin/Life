@@ -44,142 +44,133 @@ public class World {
         }
     }
 
-    public void createGlider() {
+    public void createGlider(int row, int column) {
         Cell[][] colonyCells = this.colony.getCells();
-        colonyCells[0][1].born();
-        colonyCells[1][2].born();
-        colonyCells[2][2].born();
-        colonyCells[2][1].born();
-        colonyCells[2][0].born();
+        colonyCells[row][(column + 1) % colonyCells[0].length].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 2) % colonyCells[0].length].born();
+        colonyCells[(row + 2) % colonyCells.length][(column + 2) % colonyCells[0].length].born();
+        colonyCells[(row + 2) % colonyCells.length][(column + 1) % colonyCells[0].length].born();
+        colonyCells[(row + 2) % colonyCells.length][column].born();
         this.colony.setColonyDead(false);
     }
 
-    public void createGliderGun() {
+    public void createGliderGun(int row, int column) {
         Cell[][] colonyCells = this.colony.getCells();
-        colonyCells[5][1].born();
-        colonyCells[5][2].born();
-        colonyCells[6][1].born();
-        colonyCells[6][2].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 1) % colonyCells[0].length].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 2) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 1) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 2) % colonyCells[0].length].born();
 
-        colonyCells[5][11].born();
-        colonyCells[6][11].born();
-        colonyCells[7][11].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 11) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 11) % colonyCells[0].length].born();
+        colonyCells[(row + 7) % colonyCells.length][(column + 11) % colonyCells[0].length].born();
 
-        colonyCells[4][12].born();
-        colonyCells[8][12].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 12) % colonyCells[0].length].born();
+        colonyCells[(row + 8) % colonyCells.length][(column + 12) % colonyCells[0].length].born();
 
-        colonyCells[3][13].born();
-        colonyCells[9][13].born();
+        colonyCells[(row + 3) % colonyCells.length][(column + 13) % colonyCells[0].length].born();
+        colonyCells[(row + 9) % colonyCells.length][(column + 13) % colonyCells[0].length].born();
 
-        colonyCells[3][14].born();
-        colonyCells[9][14].born();
+        colonyCells[(row + 3) % colonyCells.length][(column + 14) % colonyCells[0].length].born();
+        colonyCells[(row + 9) % colonyCells.length][(column + 14) % colonyCells[0].length].born();
 
-        colonyCells[6][15].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 15) % colonyCells[0].length].born();
 
-        colonyCells[4][16].born();
-        colonyCells[8][16].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 16) % colonyCells[0].length].born();
+        colonyCells[(row + 8) % colonyCells.length][(column + 16) % colonyCells[0].length].born();
 
-        colonyCells[5][17].born();
-        colonyCells[6][17].born();
-        colonyCells[7][17].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 17) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 17) % colonyCells[0].length].born();
+        colonyCells[(row + 7) % colonyCells.length][(column + 17) % colonyCells[0].length].born();
 
-        colonyCells[6][18].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 18) % colonyCells[0].length].born();
 
-        colonyCells[3][21].born();
-        colonyCells[4][21].born();
-        colonyCells[5][21].born();
-        colonyCells[3][22].born();
-        colonyCells[4][22].born();
-        colonyCells[5][22].born();
+        colonyCells[(row + 3) % colonyCells.length][(column + 21) % colonyCells[0].length].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 21) % colonyCells[0].length].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 21) % colonyCells[0].length].born();
+        colonyCells[(row + 3) % colonyCells.length][(column + 22) % colonyCells[0].length].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 22) % colonyCells[0].length].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 22) % colonyCells[0].length].born();
 
-        colonyCells[2][23].born();
-        colonyCells[6][23].born();
+        colonyCells[(row + 2) % colonyCells.length][(column + 23) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 23) % colonyCells[0].length].born();
 
-        colonyCells[2][25].born();
-        colonyCells[1][25].born();
-        colonyCells[6][25].born();
-        colonyCells[7][25].born();
+        colonyCells[(row + 2) % colonyCells.length][(column + 25) % colonyCells[0].length].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 25) % colonyCells[0].length].born();
+        colonyCells[(row + 6) % colonyCells.length][(column + 25) % colonyCells[0].length].born();
+        colonyCells[(row + 7) % colonyCells.length][(column + 25) % colonyCells[0].length].born();
 
-        colonyCells[4][35].born();
-        colonyCells[5][35].born();
-        colonyCells[4][36].born();
-        colonyCells[5][36].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 35) % colonyCells[0].length].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 35) % colonyCells[0].length].born();
+        colonyCells[(row + 4) % colonyCells.length][(column + 36) % colonyCells[0].length].born();
+        colonyCells[(row + 5) % colonyCells.length][(column + 36) % colonyCells[0].length].born();
         this.colony.setColonyDead(false);
     }
 
-    public void createDiehard() {
+    public void createDiehard(int row, int column) {
         Cell[][] colonyCells = this.colony.getCells();
 
-        int startRow = this.colony.getCells().length / 2;
-        int startColumn = this.colony.getCells()[0].length / 4;
+        colonyCells[row][column].born();
+        colonyCells[row][(column + 1) % colonyCells[0].length].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 1) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn].born();
-        colonyCells[startRow][startColumn + 1].born();
-        colonyCells[startRow + 1][startColumn + 1].born();
-
-        colonyCells[startRow + 1][startColumn + 5].born();
-        colonyCells[startRow + 1][startColumn + 6].born();
-        colonyCells[startRow - 1][startColumn + 6].born();
-        colonyCells[startRow + 1][startColumn + 7].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 5) % colonyCells[0].length].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 6) % colonyCells[0].length].born();
+        colonyCells[(row - 1) % colonyCells.length][(column + 6) % colonyCells[0].length].born();
+        colonyCells[(row + 1) % colonyCells.length][(column + 7) % colonyCells[0].length].born();
         this.colony.setColonyDead(false);
     }
 
-    public void createAcorn() {
+    public void createAcorn(int row, int column) {
         Cell[][] colonyCells = this.colony.getCells();
 
-        int startRow = this.colony.getCells().length / 2;
-        int startColumn = this.colony.getCells()[0].length / 4;
+        colonyCells[row][(column + 1) % colonyCells[0].length].born();
+        colonyCells[row][(column + 2) % colonyCells[0].length].born();
+        colonyCells[(row - 2) % colonyCells.length][(column + 2) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn + 1].born();
-        colonyCells[startRow][startColumn + 2].born();
-        colonyCells[startRow - 2][startColumn + 2].born();
+        colonyCells[(row - 1) % colonyCells.length][(column + 4) % colonyCells[0].length].born();
 
-        colonyCells[startRow - 1][startColumn + 4].born();
-
-        colonyCells[startRow][startColumn + 5].born();
-        colonyCells[startRow][startColumn + 6].born();
-        colonyCells[startRow][startColumn + 7].born();
+        colonyCells[row][(column + 5) % colonyCells[0].length].born();
+        colonyCells[row][(column + 6) % colonyCells[0].length].born();
+        colonyCells[row][(column + 7) % colonyCells[0].length].born();
         this.colony.setColonyDead(false);
     }
 
-    public void createLineColony() {
+    public void createLineColony(int row, int column) {
         Cell[][] colonyCells = this.colony.getCells();
 
-        int startRow = this.colony.getCells().length / 2;
-        int startColumn = this.colony.getCells()[0].length / 4;
+        colonyCells[row][(column + 2) % colonyCells[0].length].born();
+        colonyCells[row][(column + 3) % colonyCells[0].length].born();
+        colonyCells[row][(column + 4) % colonyCells[0].length].born();
+        colonyCells[row][(column + 5) % colonyCells[0].length].born();
+        colonyCells[row][(column + 6) % colonyCells[0].length].born();
+        colonyCells[row][(column + 7) % colonyCells[0].length].born();
+        colonyCells[row][(column + 8) % colonyCells[0].length].born();
+        colonyCells[row][(column + 9) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn + 2].born();
-        colonyCells[startRow][startColumn + 3].born();
-        colonyCells[startRow][startColumn + 4].born();
-        colonyCells[startRow][startColumn + 5].born();
-        colonyCells[startRow][startColumn + 6].born();
-        colonyCells[startRow][startColumn + 7].born();
-        colonyCells[startRow][startColumn + 8].born();
-        colonyCells[startRow][startColumn + 9].born();
+        colonyCells[row][(column + 11) % colonyCells[0].length].born();
+        colonyCells[row][(column + 12) % colonyCells[0].length].born();
+        colonyCells[row][(column + 13) % colonyCells[0].length].born();
+        colonyCells[row][(column + 14) % colonyCells[0].length].born();
+        colonyCells[row][(column + 15) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn + 11].born();
-        colonyCells[startRow][startColumn + 12].born();
-        colonyCells[startRow][startColumn + 13].born();
-        colonyCells[startRow][startColumn + 14].born();
-        colonyCells[startRow][startColumn + 15].born();
+        colonyCells[row][(column + 18) % colonyCells[0].length].born();
+        colonyCells[row][(column + 19) % colonyCells[0].length].born();
+        colonyCells[row][(column + 20) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn + 18].born();
-        colonyCells[startRow][startColumn + 19].born();
-        colonyCells[startRow][startColumn + 20].born();
+        colonyCells[row][(column + 26) % colonyCells[0].length].born();
+        colonyCells[row][(column + 27) % colonyCells[0].length].born();
+        colonyCells[row][(column + 28) % colonyCells[0].length].born();
+        colonyCells[row][(column + 29) % colonyCells[0].length].born();
+        colonyCells[row][(column + 30) % colonyCells[0].length].born();
+        colonyCells[row][(column + 31) % colonyCells[0].length].born();
+        colonyCells[row][(column + 32) % colonyCells[0].length].born();
 
-        colonyCells[startRow][startColumn + 26].born();
-        colonyCells[startRow][startColumn + 27].born();
-        colonyCells[startRow][startColumn + 28].born();
-        colonyCells[startRow][startColumn + 29].born();
-        colonyCells[startRow][startColumn + 30].born();
-        colonyCells[startRow][startColumn + 31].born();
-        colonyCells[startRow][startColumn + 32].born();
-
-        colonyCells[startRow][startColumn + 34].born();
-        colonyCells[startRow][startColumn + 35].born();
-        colonyCells[startRow][startColumn + 36].born();
-        colonyCells[startRow][startColumn + 37].born();
-        colonyCells[startRow][startColumn + 38].born();
+        colonyCells[row][(column + 34) % colonyCells[0].length].born();
+        colonyCells[row][(column + 35) % colonyCells[0].length].born();
+        colonyCells[row][(column + 36) % colonyCells[0].length].born();
+        colonyCells[row][(column + 37) % colonyCells[0].length].born();
+        colonyCells[row][(column + 38) % colonyCells[0].length].born();
         this.colony.setColonyDead(false);
     }
 
