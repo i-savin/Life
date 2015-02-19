@@ -1,10 +1,6 @@
 package ru.isavin.life.model;
 
-import ru.isavin.life.txt.Life;
-
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * @author ilasavin
@@ -14,8 +10,6 @@ public class World {
     public final static int DEFAULT_WORLD_SIZE = 5;
 
     private Colony colony;
-
-    private Set<Integer> hashs = new HashSet<Integer>();
 
     public void createColony(int colonyHeight, int colonyLength) {
         this.colony = new Colony(colonyHeight, colonyLength);
@@ -185,19 +179,6 @@ public class World {
 
     public void changeGeneration() {
         colony.update();
-    }
-
-    public void liveUntilCycle() {
-        while (hashs.add(colony.getHash())) {
-            colony.update();
-            printColony();
-            try {
-                Thread.sleep(Life.INTERVAL);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(hashs);
     }
 
     public boolean colonyIsAlive() {
