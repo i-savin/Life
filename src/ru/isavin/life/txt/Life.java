@@ -22,13 +22,12 @@ public class Life {
         World world = new World();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter world size: ");
-        System.out.print("length: ");
+        System.out.print("rows: ");
         int length = in.nextInt();
-        System.out.print("height: ");
+        System.out.print("columns: ");
         int height = in.nextInt();
         world.createColony(length, height);
         clearScreen();
-//        System.out.println("Choose:");
         int choice = 0;
         while (choice != values().length + 1) {
             clearScreen();
@@ -36,9 +35,9 @@ public class Life {
                 System.out.println(i + 1 + ". " + values()[i].getName());
             }
             System.out.println(values().length + 1 + ". Start!");
-            System.out.print("Choose:");
+            System.out.print("Choose: ");
             choice = in.nextInt();
-            if (choice != values().length + 1) {
+            if (choice < values().length + 1 && choice >= 0) {
                 createFigure(world, Population.values()[choice - 1]);
             }
         }
@@ -59,8 +58,12 @@ public class Life {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if (world.getGenerationsNumber() > 1000) {
+                break;
+            }
             clearScreen();
         }
+        System.out.println(world.getColonyInformation());
     }
 
     private static void createFigure(World world, Population type) {

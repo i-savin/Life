@@ -14,6 +14,8 @@ import java.util.List;
 public class Colony {
     private Cell[][] cells;
     private boolean colonyDead = true;
+    private int newBornNumber = 0;
+    private int diedNumber = 0;
 
     public Colony(int length, int height) {
         cells = new Cell[length][height];
@@ -61,9 +63,16 @@ public class Colony {
                 int liveNeighboursCount = getLiveNeighboursCount(i, j);
                 int liveCells = cells[i][j].isAlive() ? liveNeighboursCount + 1 : liveNeighboursCount;
                 if (liveCells == 3) {
+                    if (!cells[i][j].isAlive()) {
+                        newBornNumber++;
+                    }
                     newCells[i][j].born();
+
                 } else if (liveCells != 4) {
                     newCells[i][j].die();
+                    if (cells[i][j].isAlive()) {
+                        diedNumber++;
+                    }
                 }
                 if (newCells[i][j].isAlive()) {
                     allCellsAreDead = false;
@@ -91,6 +100,28 @@ public class Colony {
 
     public void setColonyDead(boolean colonyDead) {
         this.colonyDead = colonyDead;
+    }
+
+    public int getNewBornNumber() {
+        return newBornNumber;
+    }
+
+    public int getDiedNumber() {
+        return diedNumber;
+    }
+
+    public void bornCell(int i, int j) {
+        if (!cells[i][j].isAlive()) {
+            this.newBornNumber++;
+        }
+        cells[i][j].born();
+    }
+
+    public void killCell(int i, int j) {
+        if (cells[i][j].isAlive()) {
+            this.diedNumber++;
+        }
+        cells[i][j].die();
     }
 
     public int getHash() {
