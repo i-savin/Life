@@ -58,7 +58,7 @@ public class Life {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (world.getGenerationsNumber() > 1000) {
+            if (world.getGenerationsNumber() >= 1000) {
                 break;
             }
             clearScreen();

@@ -56,23 +56,20 @@ public class Colony {
     }
 
     public void update() {
+        Colony newColony = new Colony(cells.length, cells[0].length);
         Cell[][] newCells = copyColony();
+        newColony.setCells(newCells);
+
         boolean allCellsAreDead = true;
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                int liveNeighboursCount = getLiveNeighboursCount(i, j);
-                int liveCells = cells[i][j].isAlive() ? liveNeighboursCount + 1 : liveNeighboursCount;
+        for (int i = 0; i < newCells.length; i++) {
+            for (int j = 0; j < newCells[i].length; j++) {
+                int liveNeighboursCount = newColony.getLiveNeighboursCount(i, j);
+                int liveCells = newCells[i][j].isAlive() ? liveNeighboursCount + 1 : liveNeighboursCount;
                 if (liveCells == 3) {
-                    if (!cells[i][j].isAlive()) {
-                        newBornNumber++;
-                    }
-                    newCells[i][j].born();
+                    bornCell(i, j);
 
                 } else if (liveCells != 4) {
-                    newCells[i][j].die();
-                    if (cells[i][j].isAlive()) {
-                        diedNumber++;
-                    }
+                    killCell(i, j);
                 }
                 if (newCells[i][j].isAlive()) {
                     allCellsAreDead = false;
@@ -80,7 +77,6 @@ public class Colony {
 
             }
         }
-        cells = newCells;
         colonyDead = allCellsAreDead;
     }
 
