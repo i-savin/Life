@@ -24,10 +24,10 @@ public class Life {
         mainFrame.setLocationRelativeTo(null);
         World world = new World();
         world.createColony(FIELD_HEIGHT, FIELD_WIDTH);
-//        world.populateColony();
+        world.populateColony();
 //        world.createGlider(22, 152);
 //        world.createGliderGun(15, 130);
-        world.createDiehard(43, 152);
+//        world.createDiehard(43, 152);
 //        world.createAcorn(43, 152);
 //        world.createLineColony(20,140);
         mainFrame.setVisible(true);
