@@ -25,7 +25,7 @@ public class Life {
         World world = new World();
         world.createColony(FIELD_HEIGHT, FIELD_WIDTH);
         world.populateColony();
-//        world.createGlider(22, 152);
+        world.createGlider(22, 152);
 //        world.createGliderGun(15, 130);
 //        world.createDiehard(43, 152);
 //        world.createAcorn(43, 152);
