@@ -34,6 +34,8 @@ public class LifeFrame extends JFrame {
 }
 
 class LifePanel extends JPanel {
+    public final static int FACTOR = 10;
+
     private Image dbImage;
     private Graphics dbg;
     private List<CellImage> cellImages = new ArrayList<CellImage>();
@@ -50,7 +52,8 @@ class LifePanel extends JPanel {
         for (int i = 0; i < cellImages.size(); i++) {
             CellImage cellImage = cellImages.get(i);
             g.setColor(Color.BLUE);
-            g.drawRect(cellImage.getX(), cellImage.getY(), 1, 1);
+//            g.drawRect(cellImage.getX(), cellImage.getY(), 1, 1);
+            g.fillRect(cellImage.getX(), cellImage.getY(), FACTOR, FACTOR);
         }
         cellImages.clear();
     }

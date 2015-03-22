@@ -17,16 +17,17 @@ public class Life {
     private static LifeFrame mainFrame;
     private static Graphics g;
 
-    //TODO сделать клетки крупнее
-
     public static void main(String[] args) {
         mainFrame = new LifeFrame(FIELD_WIDTH, FIELD_HEIGHT, "Conway's game of life");
         mainFrame.setLocationRelativeTo(null);
         World world = new World();
-        world.createColony(FIELD_HEIGHT, FIELD_WIDTH);
-        world.populateColony();
+
+        int factor = LifePanel.FACTOR;
+
+        world.createColony(FIELD_HEIGHT / factor, FIELD_WIDTH / factor);
+//        world.populateColony();
 //        world.createGlider(22, 152);
-//        world.createGliderGun(15, 130);
+        world.createGliderGun(15, 130);
 //        world.createDiehard(43, 152);
 //        world.createAcorn(43, 152);
 //        world.createLineColony(20,140);
@@ -37,13 +38,19 @@ public class Life {
             for (int i = 0; i < cells.length; i++) {
                 for (int j = 0; j < cells[i].length; j++) {
                     if (cells[i][j].isAlive()) {
-                        mainFrame.canvas.addCell(new CellImage(j, i));
+                        mainFrame.canvas.addCell(new CellImage(j * factor, i * factor));
                     }
                 }
             }
             mainFrame.canvas.repaint();
 
             world.changeGeneration();
+
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
